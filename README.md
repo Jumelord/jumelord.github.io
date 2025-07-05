@@ -8,19 +8,48 @@ layout: default
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-# O que você vai achar aqui?
+# Sobre o projeto
 
-Estou resumindo nesse site todos os projetos relacionados, especialmente, a simulação computacional de problemas físicos, ou meramente interessantes que desenvolvi durante a graduação. Estará disponível aqui tanto os simuladores para testar na web, quanto uma explicação teórica da física e os códigos utilizados. De maneira geral, o conteúdo computacional apresentado aqui utiliza Python e Godot. Nada disso tem vínculo explícito com a faculdade, ou programa relacionado a pesquisa.
+Este site reúne projetos desenvolvidos ao longo da graduação com foco em **simulação computacional de fenômenos físicos**. O objetivo principal é tornar acessíveis:
 
-# Conteúdo
+- Simuladores interativos executáveis diretamente no navegador
+- Explicações teóricas sobre os modelos físicos utilizados
+- Códigos-fonte comentados e reutilizáveis
 
-* Pendulo amortecido
-* Sistema massa-mola acoplado
-* Oscilating Rings
-* Dancing Flames
-* Lançamento oblíquo/ Massa-mola
-* Bola no plano inclinado
+As simulações foram implementadas em linguagens como **Python** e na engine **Godot**, com o intuito de explorar tanto o comportamento físico quanto a visualização computacional dos sistemas modelados.
 
-# Quem sou eu
+> Observação: este conteúdo é de caráter pessoal e independente, sem vínculo formal com instituições acadêmicas ou projetos de pesquisa.
 
-Thales
+---
+
+# Simuladores disponíveis
+
+- [Pêndulo amortecido](./simuladores/pendulo_amortecido.html)  
+- [Sistema massa-mola acoplado](./simuladores/massas_acopladas.html)  
+- [Oscilating Rings](./simuladores/oscillating_rings.html)  
+- [Dancing Flames](./simuladores/dancing_flames.html)  
+- [Lançamento oblíquo com mola](./simuladores/lancamento_mola.html)  
+- [Bola em plano inclinado](./simuladores/plano_inclinado.html)
+
+Cada simulação é acompanhada por uma descrição teórica e pela implementação correspondente. Em alguns casos, os códigos estão disponíveis para download ou visualização direta.
+
+---
+
+# Sobre o autor
+
+Meu nome é **Thales**, sou estudante de Física e entusiasta em métodos computacionais aplicados ao ensino e à análise de sistemas físicos.
+
+Tenho interesse especial em:
+
+- Simulações numéricas de sistemas clássicos
+- Desenvolvimento de interfaces interativas para visualização científica
+- Integração entre física e computação aplicada
+
+Para comentários, sugestões ou colaborações, entre em contato por meio do [GitHub](https://github.com/seuusuario) ou por email.
+
+---
+
+<center>
+Site desenvolvido com [GitHub Pages](https://pages.github.com)  
+Equações renderizadas com [MathJax](https://www.mathjax.org/)
+</center>
