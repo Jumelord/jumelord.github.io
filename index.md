@@ -5,11 +5,11 @@ layout: default
 <head>
 <style>
 a {
-  color: #006400;
+  color: #a8d5a2;
   text-decoration: none;
 }
 a:hover {
-  color: #9ddacb;
+  color: #006400;
   text-decoration: underline;
 }
 </style>
