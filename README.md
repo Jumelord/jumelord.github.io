@@ -24,15 +24,15 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 # Available simulators
 
-- [Damped Pendulum](./simulators/damped_pendulum.html)  
+## [Damped Pendulum](./simulators/damped_pendulum.html)  
 
   ![Simulação de pêndulo](./pics/pendulum.png)
 
-- [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
-- [Oscillating Rings](./simulators/oscillating_rings.html)  
-- [Dancing Flames](./simulators/dancing_flames.html)  
-- [Projectile with Spring](./simulators/projectile_spring.html)  
-- [Inclined Plane with Ball](./simulators/inclined_plane.html)
+## [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
+## [Oscillating Rings](./simulators/oscillating_rings.html)  
+## [Dancing Flames](./simulators/dancing_flames.html)  
+## [Projectile with Spring](./simulators/projectile_spring.html)  
+## [Inclined Plane with Ball](./simulators/inclined_plane.html)
 
 Each simulation is accompanied by a brief theoretical description and the corresponding implementation. In some cases, the source code is available for download or direct access.
 
