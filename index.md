@@ -42,10 +42,11 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
   <img src="./pics/pendulum.png" width="300">
 
-  <div>
-    <strong><a ></a></strong><br>
+  <div style="font-size: 1.2em;">
+    <strong><a href="./simulators/damped_pendulum.html">Damped Pendulum</a></strong><br>
     Numerical solution of the damped pendulum's equation of motion using the Euler method.
-    In addition, user interaction was implemented, allowing the pendulum to be moved with the mouse. System parameters such as pendulum length and air viscosity can also be adjusted freely.
+    In addition, user interaction was implemented, allowing the pendulum to be moved with the mouse.
+    System parameters such as pendulum length and air viscosity can also be adjusted freely.
   </div>
 
 </div>
