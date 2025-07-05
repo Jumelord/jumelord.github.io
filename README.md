@@ -24,8 +24,10 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 # Available simulators
 
-- [Damped Pendulum](./simulators/damped_pendulum.html)
-![Simulação de pêndulo](./pics/pendulum.png)
+- [Damped Pendulum](./simulators/damped_pendulum.html)  
+
+  ![Simulação de pêndulo](./pics/pendulum.png)
+
 - [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
 - [Oscillating Rings](./simulators/oscillating_rings.html)  
 - [Dancing Flames](./simulators/dancing_flames.html)  
