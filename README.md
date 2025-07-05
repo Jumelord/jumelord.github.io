@@ -1,55 +1,55 @@
 ---
-title: "Simuladores de Física"
+title: "Physics Simulators"
 layout: default
 ---
 
-<!-- Habilita MathJax -->
+<!-- Enables MathJax -->
 <script type="text/javascript" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-# Sobre o projeto
+# About this project
 
-Este site reúne projetos desenvolvidos ao longo da graduação com foco em **simulação computacional de fenômenos físicos**. O objetivo principal é tornar acessíveis:
+This website gathers a series of projects developed during my undergraduate studies, focusing on the **computational simulation of physical systems**. The main goal is to make available:
 
-- Simuladores interativos executáveis diretamente no navegador
-- Explicações teóricas sobre os modelos físicos utilizados
-- Códigos-fonte comentados e reutilizáveis
+- Interactive simulators that can be run directly in the browser  
+- Theoretical explanations of the physical models involved  
+- Well-documented and reusable source code
 
-As simulações foram implementadas em linguagens como **Python** e na engine **Godot**, com o intuito de explorar tanto o comportamento físico quanto a visualização computacional dos sistemas modelados.
+The simulations were implemented using **Python** and the **Godot Engine**, aiming to explore both the physical behavior and the computational visualization of the systems modeled.
 
-> Observação: este conteúdo é de caráter pessoal e independente, sem vínculo formal com instituições acadêmicas ou projetos de pesquisa.
-
----
-
-# Simuladores disponíveis
-
-- [Pêndulo amortecido](./simuladores/pendulo_amortecido.html)  
-- [Sistema massa-mola acoplado](./simuladores/massas_acopladas.html)  
-- [Oscilating Rings](./simuladores/oscillating_rings.html)  
-- [Dancing Flames](./simuladores/dancing_flames.html)  
-- [Lançamento oblíquo com mola](./simuladores/lancamento_mola.html)  
-- [Bola em plano inclinado](./simuladores/plano_inclinado.html)
-
-Cada simulação é acompanhada por uma descrição teórica e pela implementação correspondente. Em alguns casos, os códigos estão disponíveis para download ou visualização direta.
+> Note: This content is personal and independent, and has no formal affiliation with any academic institution or research program.
 
 ---
 
-# Sobre o autor
+# Available simulators
 
-Meu nome é **Thales**, sou estudante de Física e entusiasta em métodos computacionais aplicados ao ensino e à análise de sistemas físicos.
+- [Damped Pendulum](./simulators/damped_pendulum.html)  
+- [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
+- [Oscillating Rings](./simulators/oscillating_rings.html)  
+- [Dancing Flames](./simulators/dancing_flames.html)  
+- [Projectile with Spring](./simulators/projectile_spring.html)  
+- [Inclined Plane with Ball](./simulators/inclined_plane.html)
 
-Tenho interesse especial em:
+Each simulation is accompanied by a brief theoretical description and the corresponding implementation. In some cases, the source code is available for download or direct access.
 
-- Simulações numéricas de sistemas clássicos
-- Desenvolvimento de interfaces interativas para visualização científica
-- Integração entre física e computação aplicada
+---
 
-Para comentários, sugestões ou colaborações, entre em contato por meio do [GitHub](https://github.com/seuusuario) ou por email.
+# About the author
+
+My name is **Thales**, and I am a Physics undergraduate student with a strong interest in computational methods applied to teaching and the analysis of physical systems.
+
+My main areas of interest include:
+
+- Numerical simulation of classical systems  
+- Development of interactive tools for scientific visualization  
+- Integration of physics and applied computing
+
+For feedback, suggestions, or collaboration inquiries, feel free to reach out via [GitHub](https://github.com/seuusuario) or email.
 
 ---
 
 <center>
-Site desenvolvido com [GitHub Pages](https://pages.github.com)  
-Equações renderizadas com [MathJax](https://www.mathjax.org/)
+This site is powered by [GitHub Pages](https://pages.github.com)  
+Equations are rendered using [MathJax](https://www.mathjax.org/)
 </center>
