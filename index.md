@@ -38,9 +38,9 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 ## [Damped Pendulum](./simulators/damped_pendulum.html)  
 
-<div style="display: flex; align-items: center; gap: 200px;">
+<div style="display: flex; align-items: center; gap: 50px;">
 
-  <img src="./pics/pendulum.png" width="150">
+  <img src="./pics/pendulum.png" width="300">
 
   <div>
     <strong><a href="./simulators/damped_pendulum.html">Damped Pendulum</a></strong><br>
