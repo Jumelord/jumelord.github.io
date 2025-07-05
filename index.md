@@ -26,13 +26,14 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 ## [Damped Pendulum](./simulators/damped_pendulum.html)  
 
-<div style="display: flex; align-items: center; gap: 20px;">
+<div style="display: flex; align-items: center; gap: 100px;">
 
   <img src="./pics/pendulum.png" alt="Pendulum simulation" width="150">
 
   <div>
     <strong><a href="./simulators/damped_pendulum.html">Damped Pendulum</a></strong><br>
-    A simulation of a damped pendulum system, exploring its oscillatory behavior under friction.
+    Numerical solution of the damped pendulum's equation of motion using the Euler method.
+    In addition, user interaction was implemented, allowing the pendulum to be moved with the mouse. System parameters such as pendulum length and air viscosity can also be adjusted freely.
   </div>
 
 </div>
