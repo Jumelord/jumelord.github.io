@@ -26,7 +26,16 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 ## [Damped Pendulum](./simulators/damped_pendulum.html)  
 
-  ![Simulação de pêndulo](./pics/pendulum.png)
+<div style="display: flex; align-items: center; gap: 20px;">
+
+  <img src="./pics/pendulum.png" alt="Pendulum simulation" width="150">
+
+  <div>
+    <strong><a href="./simulators/damped_pendulum.html">Damped Pendulum</a></strong><br>
+    A simulation of a damped pendulum system, exploring its oscillatory behavior under friction.
+  </div>
+
+</div>
 
 ## [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
 ## [Oscillating Rings](./simulators/oscillating_rings.html)  
