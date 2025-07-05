@@ -5,7 +5,7 @@ layout: default
 <head>
 <style>
 a {
-  color: #a8d5a2;
+  color: #9ddacb;
   text-decoration: none;
 }
 a:hover {
@@ -36,7 +36,7 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 # Available simulators
 
-## [Damped Pendulum](./simulators/damped_pendulum.html)  
+## [Damped Pendulum](./jogo/index.html)  
 
 <div style="display: flex; align-items: center; gap: 50px;">
 
