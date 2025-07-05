@@ -2,6 +2,18 @@
 title: "Physics Simulators"
 layout: default
 ---
+<head>
+<style>
+a {
+  color: #006400;
+  text-decoration: none;
+}
+a:hover {
+  color: #228B22;
+  text-decoration: underline;
+}
+</style>
+</head>
 
 <!-- Enables MathJax -->
 <script type="text/javascript" async
@@ -26,9 +38,9 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 ## [Damped Pendulum](./simulators/damped_pendulum.html)  
 
-<div style="display: flex; align-items: center; gap: 100px;">
+<div style="display: flex; align-items: center; gap: 200px;">
 
-  <img src="./pics/pendulum.png" alt="Pendulum simulation" width="150">
+  <img src="./pics/pendulum.png" width="150">
 
   <div>
     <strong><a href="./simulators/damped_pendulum.html">Damped Pendulum</a></strong><br>
