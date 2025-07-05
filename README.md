@@ -37,15 +37,9 @@ Each simulation is accompanied by a brief theoretical description and the corres
 
 # About the author
 
-My name is **Thales**, and I am a Physics undergraduate student with a strong interest in computational methods applied to teaching and the analysis of physical systems.
+My name is **Thales**, and I am a Physics undergraduate student at UFABC of Brazil.
 
-My main areas of interest include:
-
-- Numerical simulation of classical systems  
-- Development of interactive tools for scientific visualization  
-- Integration of physics and applied computing
-
-For feedback, suggestions, or collaboration inquiries, feel free to reach out via [GitHub](https://github.com/seuusuario) or email.
+For feedback, suggestions, or collaboration inquiries, feel free to reach out via [GitHub](https://github.com/Jumelord) or email.
 
 ---
 
