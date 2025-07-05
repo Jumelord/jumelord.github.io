@@ -5,7 +5,7 @@ layout: default
 <head>
 <style>
 a {
-  color: #9ddacb;
+  color: #59b390;
   text-decoration: none;
 }
 a:hover {
