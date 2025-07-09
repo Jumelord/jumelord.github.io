@@ -20,7 +20,7 @@ Furthermore, mouse interaction has been implemented, allowing the pendulum to be
 
 ## Physical Model
 
-The system consists of a rigid, massless rod of length \( L \), fixed at one end, with a point mass \( m \) attached to the other. The pendulum forms an angle ( $ \theta $ ) with the vertical and is subject to gravity acting downward.
+The system consists of a rigid, massless rod of length \( L \), fixed at one end, with a point mass \( m \) attached to the other. The pendulum forms an angle ( $\theta$ ) with the vertical and is subject to gravity acting downward.
 
 Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
