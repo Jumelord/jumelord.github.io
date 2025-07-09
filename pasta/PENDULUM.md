@@ -60,39 +60,47 @@ This is a **nonlinear second-order differential equation**, for which a general 
 
 ---
 
-## Taylor Expansion and the Euler Method
+# Numerical Methods
 
-To solve the system numerically, we use a Taylor expansion of a function \\( f(t) \\) around a point \\( t \\):
+## Euler's Method
 
-$$
-f(t + \Delta t) = f(t) + \Delta t\, f'(t) + \frac{(\Delta t)^2}{2!}\, f''(t) + \cdots
-$$
-
-For small time steps \\( \Delta t \\), higher-order terms can be neglected. Keeping only the first derivative leads to the **Euler method**:
+Taylor expansion allows us to write most functions as a power series. If \\( x \\) is a point in the domain of the function and \\( a \\) is a known point, we can write \\( f(x) \\) as:
 
 $$
-f(t + \Delta t) \approx f(t) + \Delta t\, f'(t)
+f(x) = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \cdots
 $$
 
-This is a **first-order numerical integration method**, with an error of order \\( \mathcal{O}(\Delta t^2) \\).
-
----
-
-## Applying Euler’s Method to the Pendulum
-
-To apply Euler's method, the equation must be written as a system of **first-order differential equations**. Starting with:
+For an initial value problem, we know \\( f(t) \\) and want to calculate \\( f \\) a short time ahead, at \\( t + \Delta t \\). Thus, we take \\( x = t + \Delta t \\) and \\( a = t \\).
 
 $$
-\ddot{\theta} = -\frac{g}{L} \sin(\theta)
+f(t + \Delta t) = f(t) + f'(t)\Delta t + \frac{f''(t)}{2!}(\Delta t)^2 + \cdots
 $$
 
-we define:
+If \\( \Delta t \\) is sufficiently small, then \\( (\Delta t)^2 \\) and higher powers of \\( \Delta t \\) will be even smaller. So we can discard the remaining powers of \\( \Delta t \\), with an error on the order of \\( \Delta t^2 \\).
+
+$$
+f(t + \Delta t) \approx f(t) + f'(t)\Delta t
+$$
+
+Therefore, if we know \\( f(t) \\) and \\( f'(t) \\), we can approximate \\( f(t + \Delta t) \\).
+
+## Applying the Method to Our Problem
+
+Unfortunately, Euler's method can only be directly applied to equations where we know the derivative as a function of the independent variables and the function itself — and in our equation we only have the relationship of \\( \ddot{\theta} \\) with \\( \theta \\).
+
+To solve this, we use a simple trick: define a new variable \\( u \\).
 
 $$
 u = \dot{\theta}
 $$
 
-This gives the system:
+Therefore:
+
+$$
+\dot{u} = \ddot{\theta}
+$$
+
+The equation we had before becomes:
 
 $$
 \dot{u} = -\frac{g}{L} \sin(\theta)
@@ -101,6 +109,8 @@ $$
 $$
 \dot{\theta} = u
 $$
+
+We first use Euler’s method to find \\( u \\) with the first equation, and then use the newly calculated \\( u \\) to find \\( \theta \\) with the second equation.
 
 Euler's method then proceeds in two steps:
 
