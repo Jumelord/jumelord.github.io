@@ -25,24 +25,32 @@ The system consists of a rigid, massless rod of length \( L \), fixed at one end
 Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
 $$
-F_\theta = -mg \sin(\theta)
+\vec{F}_\theta = -mg \sin(\theta)\,\hat{\theta}
 $$
 
 Applying Newton's second law:
 
 $$
-F = m \ddot{r} = -mg \sin(\theta)
+\vec{F} = m \ddot{\vec{r}} = -mg \sin(\theta)\,\hat{\theta}
 $$
 
 $$
-\ddot{r} = -g \sin(\theta)
+\ddot{\vec{r}} = -g \sin(\theta)\,\hat{\theta}
 $$
 
-Using the arc length relation \( r = L\theta \), we obtain:
+Using the arc length relation \( \mathrm{d}\vec{r} = L\, \mathrm{d}\vec{\theta} \), we get:
+
+$$
+\dot{\vec{r}} = L \dot{\vec{\theta}}
+$$
+
+Taking another derivative and projecting onto the angular coordinate:
 
 $$
 L \ddot{\theta} = -g \sin(\theta)
 $$
+
+So:
 
 $$
 \ddot{\theta} = -\frac{g}{L} \sin(\theta)
@@ -54,16 +62,16 @@ This is a **nonlinear second-order differential equation**, for which a general 
 
 ## Taylor Expansion and the Euler Method
 
-To solve the system numerically, we use a Taylor expansion of the function \( f(t) \) around a point \( t \):
+To solve the system numerically, we use a Taylor expansion of a function \( f(t) \) around a point \( t \):
 
 $$
-f(t + \Delta t) = f(t) + \Delta t f'(t) + \frac{(\Delta t)^2}{2!} f''(t) + \cdots
+f(t + \Delta t) = f(t) + \Delta t\, f'(t) + \frac{(\Delta t)^2}{2!}\, f''(t) + \cdots
 $$
 
-For small time steps \( \Delta t \), we can neglect higher-order terms. Keeping only the first derivative leads to the **Euler method**:
+For small time steps \( \Delta t \), higher-order terms can be neglected. Keeping only the first derivative leads to the **Euler method**:
 
 $$
-f(t + \Delta t) \approx f(t) + \Delta t f'(t)
+f(t + \Delta t) \approx f(t) + \Delta t\, f'(t)
 $$
 
 This is a **first-order numerical integration method**, with an error of order \( \mathcal{O}(\Delta t^2) \).
@@ -84,7 +92,7 @@ $$
 u = \dot{\theta}
 $$
 
-This gives us the system:
+This gives the system:
 
 $$
 \dot{u} = -\frac{g}{L} \sin(\theta)
@@ -99,11 +107,11 @@ Euler's method then proceeds in two steps:
 1. Update the velocity:
 
    $$
-   u(t + \Delta t) = u(t) - \frac{g}{L} \sin(\theta(t)) \Delta t
+   u(t + \Delta t) = u(t) - \frac{g}{L} \sin(\theta(t))\, \Delta t
    $$
 
 2. Update the angle:
 
    $$
-   \theta(t + \Delta t) = \theta(t) + u(t + \Delta t) \Delta t
+   \theta(t + \Delta t) = \theta(t) + u(t + \Delta t)\, \Delta t
    $$
