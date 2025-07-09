@@ -24,29 +24,29 @@ The system consists of a rigid, massless rod of length \( L \), fixed at one end
 
 Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
-\[
+$$
 F_\theta = -mg \sin(\theta)
-\]
+$$
 
 Applying Newton's second law:
 
-\[
+$$
 F = m \ddot{r} = -mg \sin(\theta)
-\]
+$$
 
-\[
+$$
 \ddot{r} = -g \sin(\theta)
-\]
+$$
 
 Using the arc length relation \( r = L\theta \), we obtain:
 
-\[
+$$
 L \ddot{\theta} = -g \sin(\theta)
-\]
+$$
 
-\[
+$$
 \ddot{\theta} = -\frac{g}{L} \sin(\theta)
-\]
+$$
 
 This is a **nonlinear second-order differential equation**, for which a general analytical solution does not exist.
 
@@ -56,15 +56,15 @@ This is a **nonlinear second-order differential equation**, for which a general 
 
 To solve the system numerically, we use a Taylor expansion of the function \( f(t) \) around a point \( t \):
 
-\[
+$$
 f(t + \Delta t) = f(t) + \Delta t f'(t) + \frac{(\Delta t)^2}{2!} f''(t) + \cdots
-\]
+$$
 
 For small time steps \( \Delta t \), we can neglect higher-order terms. Keeping only the first derivative leads to the **Euler method**:
 
-\[
+$$
 f(t + \Delta t) \approx f(t) + \Delta t f'(t)
-\]
+$$
 
 This is a **first-order numerical integration method**, with an error of order \( \mathcal{O}(\Delta t^2) \).
 
@@ -74,37 +74,36 @@ This is a **first-order numerical integration method**, with an error of order \
 
 To apply Euler's method, the equation must be written as a system of **first-order differential equations**. Starting with:
 
-\[
+$$
 \ddot{\theta} = -\frac{g}{L} \sin(\theta)
-\]
+$$
 
 we define:
 
-\[
+$$
 u = \dot{\theta}
-\]
+$$
 
 This gives us the system:
 
-\[
+$$
 \dot{u} = -\frac{g}{L} \sin(\theta)
-\]
-\[
+$$
+
+$$
 \dot{\theta} = u
-\]
+$$
 
 Euler's method then proceeds in two steps:
 
 1. Update the velocity:
-   \[
+
+   $$
    u(t + \Delta t) = u(t) - \frac{g}{L} \sin(\theta(t)) \Delta t
-   \]
+   $$
 
 2. Update the angle:
-   \[
+
+   $$
    \theta(t + \Delta t) = \theta(t) + u(t + \Delta t) \Delta t
-   \]
-
-
-
-
+   $$
