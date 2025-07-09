@@ -38,7 +38,7 @@ $$
 \ddot{\vec{r}} = -g \sin(\theta)\hat{\theta}
 $$
 
-Using the arc length relation ( $\mathrm{d}\vec{r} = L \mathrm{d}\hat{\theta}$ ), we get:
+Using the arc length relation ( $\mathrm{d} \vec{r} = L \mathrm{d} \hat{\theta}$ ), we get:
 
 $$
 \dot{\vec{r}} = L \dot{\vec{\theta}}
