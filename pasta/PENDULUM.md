@@ -126,6 +126,5 @@ Euler's method then proceeds in two steps:
    \theta(t + \Delta t) = \theta(t) + u(t + \Delta t)\, \Delta t
    $$
    
-> **Note:** One could use \\( u(t) \\) instead of \\( u(t + \Delta t) \\) in the second update step, and this would still be consistent with Euler’s method.  
-> However, using the most recently updated value makes the method slightly more robust in practice.  
+> **Note:** One could use \\( u(t) \\) instead of \\( u(t + \Delta t) \\) in the second update step, and this would still be consistent with Euler’s method. However, using the most recently updated value makes the method slightly more robust in practice.  
 > Moreover, when \\( \Delta t \\) is small, we have \\( u(t + \Delta t) \approx u(t) \\), so the difference is not significant.
