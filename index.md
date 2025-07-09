@@ -1,6 +1,6 @@
 ---
 title: "Physics Simulators"
-layout: jekyll-theme-midnight
+layout: jekyll-theme-cayman
 ---
 
 <style>
