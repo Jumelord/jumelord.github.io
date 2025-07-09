@@ -25,17 +25,17 @@ The system consists of a rigid, massless rod of length \( L \), fixed at one end
 Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
 $$
-\vec{F}_\theta = -mg \sin(\theta)\,\hat{\theta}
+\vec{F}_\theta = -mg \sin(\theta)\hat{\theta}
 $$
 
 Applying Newton's second law:
 
 $$
-\vec{F} = m \ddot{\vec{r}} = -mg \sin(\theta)\,\hat{\theta}
+\vec{F} = m \ddot{\vec{r}} = -mg \sin(\theta)\hat{\theta}
 $$
 
 $$
-\ddot{\vec{r}} = -g \sin(\theta)\,\hat{\theta}
+\ddot{\vec{r}} = -g \sin(\theta)\hat{\theta}
 $$
 
 Using the arc length relation \( \mathrm{d}\vec{r} = L\, \mathrm{d}\vec{\theta} \), we get:
