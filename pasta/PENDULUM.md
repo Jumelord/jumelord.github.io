@@ -8,8 +8,6 @@ layout: default
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-amacacaca \\( \frac{1}{n^{2}} \\)
-
 # Damped Pendulum
 
 The pendulum is one of the simplest mechanical systems. However, the presence of a nonlinear term in its equation of motion complicates the analysis, and in general, an exact analytical solution is not available. One way to study the behavior of this system is through **numerical methods**.
@@ -22,25 +20,7 @@ Furthermore, mouse interaction has been implemented, allowing the pendulum to be
 
 ## Physical Model
 
-The system consists of a rigid, massless rod of length 
-
-$$
-L
-$$
-
-fixed at one end, with a point mass 
-
-$$
-m
-$$
-
-attached to the other. The pendulum forms an angle 
-
-$$
-\theta
-$$
-
-with the vertical and is subject to gravity acting downward.
+The system consists of a rigid, massless rod of length \\( L \\), fixed at one end, with a point mass \\( m \\) attached to the other. The pendulum forms an angle \\( \theta \\) with the vertical and is subject to gravity acting downward.
 
 Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
@@ -58,13 +38,7 @@ $$
 \ddot{\vec{r}} = -g \sin(\theta)\hat{\theta}
 $$
 
-Using the arc length relation
-
-$$
-\mathrm{d} \vec{r} = L \mathrm{d} \hat{\theta}
-$$
-
-we get:
+Using the arc length relation \\( \mathrm{d} \vec{r} = L\, \mathrm{d} \hat{\theta} \\), we get:
 
 $$
 \dot{\vec{r}} = L \dot{\vec{\theta}}
@@ -88,43 +62,19 @@ This is a **nonlinear second-order differential equation**, for which a general 
 
 ## Taylor Expansion and the Euler Method
 
-To solve the system numerically, we use a Taylor expansion of a function 
-
-$$
-f(t)
-$$
-
-around a point 
-
-$$
-t
-$$
-
-:
+To solve the system numerically, we use a Taylor expansion of a function \\( f(t) \\) around a point \\( t \\):
 
 $$
 f(t + \Delta t) = f(t) + \Delta t\, f'(t) + \frac{(\Delta t)^2}{2!}\, f''(t) + \cdots
 $$
 
-For small time steps 
-
-$$
-\Delta t
-$$
-
-, higher-order terms can be neglected. Keeping only the first derivative leads to the **Euler method**:
+For small time steps \\( \Delta t \\), higher-order terms can be neglected. Keeping only the first derivative leads to the **Euler method**:
 
 $$
 f(t + \Delta t) \approx f(t) + \Delta t\, f'(t)
 $$
 
-This is a **first-order numerical integration method**, with an error of order 
-
-$$
-\mathcal{O}(\Delta t^2)
-$$
-
-.
+This is a **first-order numerical integration method**, with an error of order \\( \mathcal{O}(\Delta t^2) \\).
 
 ---
 
