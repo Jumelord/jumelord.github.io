@@ -1,6 +1,6 @@
 ---
 title: "Physics Simulators"
-layout: minima
+layout: default
 ---
 
 <style>
