@@ -8,7 +8,7 @@ layout: default
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-\\[ \frac{1}{n^{2}} \\]
+amacacaca \\[ \frac{1}{n^{2}} \\]
 
 # Damped Pendulum
 
