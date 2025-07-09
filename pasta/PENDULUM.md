@@ -33,4 +33,19 @@ Portanto:
 $$L\ddot{\theta} = -sin(\theta)g$$
 $$\ddot{\theta} = -sin(\theta)g/L$$
 
+# Métodos Numéricos
+
+## Método de Euler
+
+A expansão em taylor nos permite escrever a maioria das funções como uma soma de potências. Se x é um ponto no domínio da função e a é um ponto conhecido, podemos escrever f(x) como:
+
+$$f(x) = f(a) + f^'(a)(x-a) + f^{''}(a)(x-a)²/2! ...$$
+
+Para um problema de valor inicial, sabemos $$f(t)$$ e queremos calcular $$f$$ um periodo de tempo adiante, em $$t + \Delta t$$. Dessa forma, tomamos $$x = t + \Delta t$$, e a = t.
+
+$$f(t + \Delta t) = f(t) + f^' (t)\Delta t + f^{''}(t)\Delta t^2/2! ...$$
+
+
+
+
 
