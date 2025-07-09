@@ -41,7 +41,7 @@ $$
 Using the arc length relation \\( \mathrm{d} \vec{r} = L\, \mathrm{d} \hat{\theta} \\), we get:
 
 $$
-\dot{\vec{r}} = L \dot{\vec{\theta}}
+\dot{\vec{r}} = L \dot{\hat{\theta}}
 $$
 
 Taking another derivative and projecting onto the angular coordinate:
@@ -60,9 +60,9 @@ This is a **nonlinear second-order differential equation**, for which a general 
 
 ---
 
-# Numerical Methods
+## Numerical Methods
 
-## Euler's Method
+### Euler's Method
 
 Taylor expansion allows us to write most functions as a power series. If \\( x \\) is a point in the domain of the function and \\( a \\) is a known point, we can write \\( f(x) \\) as:
 
@@ -84,7 +84,7 @@ $$
 
 Therefore, if we know \\( f(t) \\) and \\( f'(t) \\), we can approximate \\( f(t + \Delta t) \\).
 
-## Applying the Method to Our Problem
+### Applying the Method to Our Problem
 
 Unfortunately, Euler's method can only be directly applied to equations where we know the derivative as a function of the independent variables and the function itself — and in our equation we only have the relationship of \\( \ddot{\theta} \\) with \\( \theta \\).
 
@@ -128,3 +128,15 @@ Euler's method then proceeds in two steps:
    
 > **Note:** One could use \\( u(t) \\) instead of \\( u(t + \Delta t) \\) in the second update step, and this would still be consistent with Euler’s method. However, using the most recently updated value makes the method slightly more robust in practice.  
 > Moreover, when \\( \Delta t \\) is small, we have \\( u(t + \Delta t) \approx u(t) \\), so the difference is not significant.
+
+## Godot Setup
+
+Para performar essa simulação no **Godot**,
+* Criar uma cena 3D
+* Adicionar uma câmera
+* Adicionar um Nó 3D que será o pênduo
+* Adicionar um mesh com forma de cilindro para a aste dentro do nó do Pendulo
+* Adicionar um mesh com forma de esfera para a massa do Pendulo
+* (Opcional) Adicionar um ambiente
+  
+![Godot Pendulum Setup](../pics/pendulum_setup.png)
