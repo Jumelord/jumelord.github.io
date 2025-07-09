@@ -3,48 +3,102 @@
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-O pêndulo é um dos sistemas mecânicos mais simples. Contudo, o termo não linear na sua equação do movimento dificulta os cálculos, e sua resolução exata não pode ser encontrada analíticamente. Uma maneira de estudar o comportamento desse sistema é por meio do cálculo numérico.
-Aqui vou utilizar o método de Euler, talvez o mais simples algorítmo de resolução de equações diferenciais, para resolver pêndulo utilizando o programa Godot.
+# Damped Pendulum
 
+The pendulum is one of the simplest mechanical systems. However, the presence of a nonlinear term in its equation of motion complicates the analysis, and in general, an exact analytical solution is not available. One way to study the behavior of this system is through **numerical methods**.
+
+In this case, the **Euler method** — one of the simplest algorithms for solving differential equations — is used to simulate the motion of a damped pendulum. The simulation was implemented using the **Godot** engine.
+
+Furthermore, mouse interaction has been implemented, allowing the pendulum to be moved directly by the user. System parameters such as the pendulum's length and air viscosity can also be freely adjusted.
 
 ---
-# Formulação do Problema
 
-O problema consiste de uma barra de massa desprezível e comprimento *L*, com uma das pontas presa a um eixo, e outra ponta presa a uma massa *m*, formando um ângulo $$\theta$$ com a vertical. Além disso, a massa é forçada pela força da gravidade que aponta para baixo.
+## Physical Model
 
-O fato da massa estar vinculada a barra faz com que a força resultante da massa na direção que aponta para a barra é zero, e portanto devemos tratar apenas da componente angular da força.
+The system consists of a rigid, massless rod of length \( L \), fixed at one end, with a point mass \( m \) attached to the other. The pendulum forms an angle \( \theta \) with the vertical and is subject to gravity acting downward.
 
-Essa componente é dada pela seguinte equação:
+Due to the constraint imposed by the rod, the motion occurs only in the angular direction. The angular component of the gravitational force is:
 
-$$ F_{\theta} = -sin(\theta)mg $$
+\[
+F_\theta = -mg \sin(\theta)
+\]
 
-A partira da segunda lei de Newton obtemos a equação do movimento.
+Applying Newton's second law:
 
-$$F = m \ddot{r} = -sin(\theta)mg$$
+\[
+F = m \ddot{r} = -mg \sin(\theta)
+\]
 
-$$\ddot{r} = -sin(\theta)g$$
+\[
+\ddot{r} = -g \sin(\theta)
+\]
 
-Podemos utilizar a geometria do sistema para expressar r em termos de $\theta$.
+Using the arc length relation \( r = L\theta \), we obtain:
 
-$$r = L \theta$$
+\[
+L \ddot{\theta} = -g \sin(\theta)
+\]
 
-Portanto:
+\[
+\ddot{\theta} = -\frac{g}{L} \sin(\theta)
+\]
 
-$$L\ddot{\theta} = -sin(\theta)g$$
-$$\ddot{\theta} = -sin(\theta)g/L$$
+This is a **nonlinear second-order differential equation**, for which a general analytical solution does not exist.
 
-# Métodos Numéricos
+---
 
-## Método de Euler
+## Taylor Expansion and the Euler Method
 
-A expansão em taylor nos permite escrever a maioria das funções como uma soma de potências. Se x é um ponto no domínio da função e a é um ponto conhecido, podemos escrever f(x) como:
+To solve the system numerically, we use a Taylor expansion of the function \( f(t) \) around a point \( t \):
 
-$$f(x) = f(a) + f^'(a)(x-a) + f^{''}(a)(x-a)²/2! ...$$
+\[
+f(t + \Delta t) = f(t) + \Delta t f'(t) + \frac{(\Delta t)^2}{2!} f''(t) + \cdots
+\]
 
-Para um problema de valor inicial, sabemos $$f(t)$$ e queremos calcular $$f$$ um periodo de tempo adiante, em $$t + \Delta t$$. Dessa forma, tomamos $$x = t + \Delta t$$, e a = t.
+For small time steps \( \Delta t \), we can neglect higher-order terms. Keeping only the first derivative leads to the **Euler method**:
 
-$$f(t + \Delta t) = f(t) + f^' (t)\Delta t + f^{''}(t)\Delta t^2/2! ...$$
+\[
+f(t + \Delta t) \approx f(t) + \Delta t f'(t)
+\]
 
+This is a **first-order numerical integration method**, with an error of order \( \mathcal{O}(\Delta t^2) \).
+
+---
+
+## Applying Euler’s Method to the Pendulum
+
+To apply Euler's method, the equation must be written as a system of **first-order differential equations**. Starting with:
+
+\[
+\ddot{\theta} = -\frac{g}{L} \sin(\theta)
+\]
+
+we define:
+
+\[
+u = \dot{\theta}
+\]
+
+This gives us the system:
+
+\[
+\dot{u} = -\frac{g}{L} \sin(\theta)
+\]
+\[
+\dot{\theta} = u
+\]
+
+Euler's method then proceeds in two steps:
+
+1. Update the velocity:
+   \[
+   u(t + \Delta t) = u(t) - \frac{g}{L} \sin(\theta(t)) \Delta t
+   \]
+
+2. Update the angle:
+   \[
+   \theta(t + \Delta t) = \theta(t) + u(t + \Delta t) \Delta t
+   \]
 
 
 
