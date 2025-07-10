@@ -23,7 +23,7 @@ a:hover {
 </style>
 </head>
 
-# [Run Simulation](./jogo/index.html)
+# [Run Simulation](../jogo/index.html)
 
 # Damped Pendulum
 
