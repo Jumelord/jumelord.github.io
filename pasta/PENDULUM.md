@@ -194,3 +194,20 @@ temos que dt * FPS = dt * 1/dt = 1 segundos de simulação por segundos reais.
 func _ready():
 	Engine.physics_ticks_per_second = 1/dt
 
+### Interação com o Mouse
+
+Para começar a fazer alguma interação com o usuário, devemos adicionar o comando do clique do mouse na lista de inputs. Para isso clicamos na opção Project -> Project Settings -> Input Map -> Add New Action, e colocamos o nome "mouse" (Colocar o nome que quiser), e clicamos no botão Add, então procuramos na lista abaixo e clicamos em +, aonde você deve procurar o botão desejado do mouse.
+
+Dessa maneira, vamos alterar o laço de processamento para que ele resolva a equação do movimento quando não estamos clicando, e altere o angulo do pendulo de acordo com a posicao do mouse quando estamos clicando.
+
+func _physics_process(delta):
+	if not Input.is_action_pressed("mouse"):
+		dtheta += g*sin(theta)/L*dt
+		theta += dtheta*dt
+	else:
+		theta = get_viewport().get_mouse_position().x/100
+		dtheta = 0
+	$Pendulum.rotation.z = theta
+
+A primeira parte é evidentemente a resolução da equação do movimento que haviamos escrito anteriormente. O comando Input.is_action_pressed("mouse") retorna verdadeiro quando o mouse não está sendo clicado, e falso caso contrário, permitindo diferenciar esses dois casos. A linha 6 altera a variável theta com base da posição x do mouse na janela de visualização e multiplica por um fator de sensibilidade, e a linha 7 zera a velocidade do pêndulo.
+
