@@ -153,15 +153,16 @@ Euler's method then proceeds in two steps:
 
 ## Godot Setup
 
-Para performar essa simulação no **Godot**,
-* Criar uma cena 3D
-* Adicionar uma câmera
-* Adicionar um Nó 3D que será o pênduo
-* Adicionar um mesh com forma de cilindro para a aste dentro do nó do Pendulo
-* Mover a o cilindro verticalmente para baixo até a sua ponta de cima ficar no centro do Nó do Pendulo
-* Adicionar um mesh com forma de esfera para a massa do Pendulo
-* Adicionar um script à raiz da cena 3D
-* (Opcional) Adicionar um ambiente
+To perform this simulation in **Godot**:
+
+- Create a 3D scene  
+- Add a camera  
+- Add a 3D Node that will serve as the pendulum  
+- Add a cylindrical mesh as the pendulum rod inside the pendulum node  
+- Move the cylinder downward so that its top aligns with the center of the pendulum node  
+- Add a spherical mesh to represent the pendulum's mass  
+- Attach a script to the root of the 3D scene  
+- *(Optional)* Add an environment  
   
 ![Godot Pendulum Setup](../pics/pendulum_setup.png)
 
