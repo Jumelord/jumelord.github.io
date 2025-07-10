@@ -4,8 +4,8 @@ layout: default
 ---
 
 <style>
-.site-title, .site-description {
-  display: none;
+.site-header {
+  display: none !important;
 }
 </style>
 
