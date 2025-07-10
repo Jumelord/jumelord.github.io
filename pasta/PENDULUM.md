@@ -308,3 +308,60 @@ func _physics_process(delta: float) -> void:
 		$Pendulum.rotation.z = theta
 
 ```
+## Dynamic Sliders
+
+All our code so far is consistent with the physics and effective, but it would be even more interesting if we could modify the physical properties of the pendulum during the simulation. A useful way to implement this is by using adjustable sliders that control, for example, the damping coefficient and the pendulum length (the two most relevant parameters in the system).
+
+### Adding in Godot
+
+Godot provides a variety of prebuilt objects. One class of these objects is the **Control nodes**, which are generally used to add user interfaces to the simulation—such as buttons, windows, or in our case, sliders.
+
+We add two **vertical sliders** to the root node, and we attach a label to each slider. These interface elements can be visualized in the **2D tab**.
+
+![Vertical Sliders](../pics/sliders.png)
+
+With that set up, we can return to our script and bind the sliders' properties to the parameters in the equations of motion.
+
+### Adding in the Code
+
+What we did was to define the damping coefficient `b` and the pendulum length `L` as proportional to the values of each slider.
+
+
+```gdscript
+func _physics_process(delta: float) -> void:
+	b = $VSlider.value*10
+	L = $VSlider2.value
+	
+	if not Input.is_action_pressed("mouse"):
+		dtheta += -(g*sin(theta + PI)/L + b*dtheta)*dt
+		theta += dtheta*dt
+		$Pendulum.rotation.z = theta
+	else:
+		theta = get_viewport().get_mouse_position().x/100
+		dtheta = 0
+		$Pendulum.rotation.z = theta
+```
+
+One way to make the simulation more visually appealing and consistent is to change the pendulum's size in the scene based on the parameter \( L \). This can be done by accessing the pendulum's **cylinder** and **sphere** nodes and adjusting their sizes and positions accordingly.
+
+This process is performed manually, by choosing values that match the visual setup.
+
+
+```gdscript
+func _physics_process(delta: float) -> void:
+	b = $VSlider.value*10
+	L = $VSlider2.value
+	
+	$Pendulum/Cylinder.mesh.height = L*4
+	$Pendulum/Cylinder.position.y = -0.951 +(- L*4 + 2)/2
+	$Pendulum/Cylinder/Sphere.position.y = -0.951 +(- L*4 + 2)/2
+	
+	if not Input.is_action_pressed("mouse"):
+		dtheta += -(g*sin(theta + PI)/L + b*dtheta)*dt
+		theta += dtheta*dt
+		$Pendulum.rotation.z = theta
+	else:
+		theta = get_viewport().get_mouse_position().x/100
+		dtheta = 0
+		$Pendulum.rotation.z = theta
+```
