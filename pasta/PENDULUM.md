@@ -147,10 +147,16 @@ Para performar essa simulação no **Godot**,
 
 ### Variables
 
-O código do godot é muito semelhante ao Python, mas possui algumas peculiaridades. Para definir uma variável escrevemos var nome_da_variavel = valor_da_variavel. QUando escrevemos dessa maneira, o tipo da variável já é definido como o tipo do valor que colocamos.
+Godot’s scripting language is very similar to Python, but it has some specific features. To define a variable, we write:
 
-Agora abrimos o código e começamos a criar as variáveis que vamos utilizar. Nesse caso criamos uma variável para o \Delta t, \theta, \dot{\theta}, gravidade, e comprimento, nomeadas respectivamente como dt, theta, dtheta, g, e L. Essa variáveis não são parâmetros de qualquer objeto do Godot, mas vamos vincular elas as propriedades físicas depois.
+```gdscript
+var variable_name = variable_valueQUando escrevemos dessa maneira, o tipo da variável já é definido como o tipo do valor que colocamos.
 
+When written this way, the variable type is inferred from the assigned value.
+
+Now let’s open the script and define the variables we’ll use. In this case, we create variables for the time step \( \Delta t \), the angle \( \theta \), the angular velocity \( \dot{\theta} \), gravity, and the pendulum’s length — named respectively as `dt`, `theta`, `dtheta`, `g`, and `L`. These variables are not parameters of any Godot object, but we will later link them to physical properties.
+
+```gdscript
 extends Node3D
 
 var dt = 0.01
@@ -159,28 +165,42 @@ var dtheta = 0
 var g = -9.8
 var L = 1
 
-O extends Node3D não é uma variável, mas ele é mandatório para executar o código pois determina o tipo do objeto do nó raiz.
+The `extends Node3D` line is not a variable, but it is mandatory for the script to run, as it determines the type of the root node object.
 
 ### Euler Method
 
-Nosso objetivo aqui não é resolver uma equação diferencial com o maximo de precisão, mas sim de maneira visualmente atraente e fisicamente compatível. Assim sendo, vamos fazer o Godot achar novos valores para \theta a cada frame. Para isso, vamos utilizar a função _physics_process(delta) que é executada a cada frame.
+Our goal here is not to solve a differential equation with maximum precision, but rather in a way that is visually appealing and physically reasonable. Therefore, we will have Godot computThe `extends Node3D` line is not a variable, but it is mandatory for the script to run, as it determines the type of the root node object.
 
-Aplicando as equações que obtemos anteriormente no código obtemos isso.
+### Euler Method
 
+Our goal here is not to solve a differential equation with maximum precision, but rather in a way that is visually appealing and physically reasonable. Therefore, we will have Godot compute new values for \( \theta \) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
+
+By applying the equations we previously derived, we obtain the following code:e new values for \( \theta \) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
+
+By applying the equations we previously derived, we obtain the following code:
+
+```gdscript
 func _physics_process(delta: float) -> void:
   dtheta += g*sin(theta)/L*dt
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
 
-As linhas 2 e 3 são exatamente as equações que discutimos antes, enquanto que na linha 4 estamos atualizando a rotação do objeto pendulo no eixo z utilizando a variável theta.
+Lines 2 and 3 correspond exactly to the equations we discussed earlier, while line 4 updates the rotation of the pendulum object around the z-axis using the variable `theta`.
 
-Colocando o Godot para executar a simulação, já devemos observar que o pêndulo em movimento.
+Once the simulation is executed in Godot, we should already observe the pendulum in motion.
 
-### Correção Temporal
+### Time Correction
 
-Se você alterar o valor do time-step, você deve perceber que isso afeta a velocidade do pêndulo. Isso pode parecer estranho, pois o time-step não é um parâmetro físico. Contudo, devemos levar em conta que não existe uma relação tão clara entre o tempo da simulação, e o tempo que observamos (Qualquer semelhança com a relatividade é mera coincidencia.). Se o seu time-step é de 0.1, e a física do simulador é iterada 60 vezes por segundo, então a simulação vai ser 6 vezes mais rápido do que você veria na realidade.
+If you change the value of the time step, you will likely notice that it affects the pendulum's speed. This may seem odd, as the time step is not a physical parameter. However, we must take into account that there is no clear relationship between simulation time and the time we observe. (Any resemblance to relativity is purely coincidental.) If your time step is 0.1 and the simulation physics runs at 60 iterations per second, then the simulation will be six times faster than what would happen in real life.
 
-Há duas formas de ajustar isso. A primeira consiste em utilizar o parâmetro delta que recebemos do _physics_process. Esse parâmetro retorna um valor 1/FPS, ou seja se definimos dt = delta, a cada segundo vamos ter dt * FPS = 1/FPS * FPS = 1 segundos de simulação por segundos reais, o que resolve nossos problemas com o preço da precisão ser limitada.
+There are two ways to adjust this. The first is to use the `delta` parameter received by the `_physics_process` function. This parameter returns a value equal to \( \frac{1}{\text{FPS}} \), so if we define `dt = delta`, we have:
+
+\[
+\text{simulation time per second} = \Delta t \times \text{FPS} = \frac{1}{\text{FPS}} \times \text{FPS} = 1
+\]
+
+That is, one second of simulation corresponds to one second of real time. This resolves our problem, at the cost of some precision.
+
 
 func _physics_process(delta):
   dt = delta
@@ -188,17 +208,24 @@ func _physics_process(delta):
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
 
-A segunda maneira é tentar forçar o Godot a aumentar a velocidade de processamento. Isso permite você aumentar a precisão até o limite em que seu computador aguentar. Para isso utilizamos a função _ready() que é chamada assim que a simulação inicializa, e alteramos o número de iterações por segundo para 1/dt, assim 
-temos que dt * FPS = dt * 1/dt = 1 segundos de simulação por segundos reais.
+The second approach is to force Godot to increase the processing speed. This allows you to increase the precision up to the limit your machine can handle. To do this, we use the `_ready()` function, which is called as soon as the simulation starts. Inside it, we set the number of physics iterations per second to \( \frac{1}{\Delta t} \), so that:
+
+\[
+\Delta t \times \text{FPS} = \Delta t \times \frac{1}{\Delta t} = 1
+\]
+
+That is, one second of simulation corresponds to one second of real time.
+
 
 func _ready():
 	Engine.physics_ticks_per_second = 1/dt
 
-### Interação com o Mouse
+### Mouse Interaction
 
-Para começar a fazer alguma interação com o usuário, devemos adicionar o comando do clique do mouse na lista de inputs. Para isso clicamos na opção Project -> Project Settings -> Input Map -> Add New Action, e colocamos o nome "mouse" (Colocar o nome que quiser), e clicamos no botão Add, então procuramos na lista abaixo e clicamos em +, aonde você deve procurar o botão desejado do mouse.
+To begin implementing user interaction, we need to add the mouse click command to the input list. To do this, navigate to **Project -> Project Settings -> Input Map -> Add New Action**, enter the name "mouse" (or any name you prefer), and click the **Add** button. Then, locate the newly created action in the list below and click the **+** button to assign the desired mouse button.
 
-Dessa maneira, vamos alterar o laço de processamento para que ele resolva a equação do movimento quando não estamos clicando, e altere o angulo do pendulo de acordo com a posicao do mouse quando estamos clicando.
+With this setup, we will modify the processing loop so that it solves the equation of motion when the mouse is not being clicked, and updates the pendulum angle based on the mouse position when the mouse button is pressed.
+
 
 func _physics_process(delta):
 	if not Input.is_action_pressed("mouse"):
@@ -209,5 +236,6 @@ func _physics_process(delta):
 		dtheta = 0
 	$Pendulum.rotation.z = theta
 
-A primeira parte é evidentemente a resolução da equação do movimento que haviamos escrito anteriormente. O comando Input.is_action_pressed("mouse") retorna verdadeiro quando o mouse não está sendo clicado, e falso caso contrário, permitindo diferenciar esses dois casos. A linha 6 altera a variável theta com base da posição x do mouse na janela de visualização e multiplica por um fator de sensibilidade, e a linha 7 zera a velocidade do pêndulo.
+The first part is clearly the solution to the equation of motion we wrote earlier. The command `Input.is_action_pressed("mouse")` returns true when the mouse button is pressed, and false otherwise, allowing us to distinguish between these two cases. Line 6 updates the variable `theta` based on the mouse’s x-position within the viewport, multiplied by a sensitivity factor, and line 7 resets the pendulum’s angular velocity to zero.
+
 
