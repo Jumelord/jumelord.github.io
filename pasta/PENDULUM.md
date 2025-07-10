@@ -157,7 +157,7 @@ When written this way, the variable type is inferred from the assigned value.
 
 Now let’s open the script and define the variables we’ll use. In this case, we create variables for the time step \( \Delta t \), the angle \( \theta \), the angular velocity \( \dot{\theta} \), gravity, and the pendulum’s length — named respectively as `dt`, `theta`, `dtheta`, `g`, and `L`. These variables are not parameters of any Godot object, but we will later link them to physical properties.
 
-```
+```gdscript
 extends Node3D
 
 var dt = 0.01
@@ -177,7 +177,7 @@ By applying the equations we previously derived, we obtain the following code:e 
 
 By applying the equations we previously derived, we obtain the following code:
 
-```
+```gdscript
 func _physics_process(delta: float) -> void:
   dtheta += g*sin(theta)/L*dt
   theta += dtheta*dt
@@ -199,7 +199,7 @@ $$
 
 That is, one second of simulation corresponds to one second of real time. This resolves our problem, at the cost of some precision.
 
-```
+```gdscript
 func _physics_process(delta):
   dt = delta
   dtheta += g*sin(theta)/L*dt
@@ -216,7 +216,7 @@ $$
 
 That is, one second of simulation corresponds to one second of real time.
 
-```
+```gdscript
 func _ready():
 	Engine.physics_ticks_per_second = 1/dt
 ```
@@ -227,7 +227,7 @@ To begin implementing user interaction, we need to add the mouse click command t
 
 With this setup, we will modify the processing loop so that it solves the equation of motion when the mouse is not being clicked, and updates the pendulum angle based on the mouse position when the mouse button is pressed.
 
-```
+```gdscript
 func _physics_process(delta):
 	if not Input.is_action_pressed("mouse"):
 		dtheta += g*sin(theta)/L*dt
