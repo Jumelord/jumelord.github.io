@@ -150,7 +150,8 @@ Para performar essa simulação no **Godot**,
 Godot’s scripting language is very similar to Python, but it has some specific features. To define a variable, we write:
 
 ```gdscript
-var variable_name = variable_valueQUando escrevemos dessa maneira, o tipo da variável já é definido como o tipo do valor que colocamos.
+var variable_name = variable_value
+```
 
 When written this way, the variable type is inferred from the assigned value.
 
