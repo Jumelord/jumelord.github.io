@@ -269,7 +269,6 @@ var dt = 0.01
 var theta = 1.4
 var dtheta = 10
 var g = -9.8
-var m = 10
 var L = 1
 var b = 0.01
 
