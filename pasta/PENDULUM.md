@@ -179,12 +179,12 @@ By applying the equations we previously derived, we obtain the following code:e 
 
 By applying the equations we previously derived, we obtain the following code:
 
-```gdscript
+'''
 func _physics_process(delta: float) -> void:
   dtheta += g*sin(theta)/L*dt
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
-
+'''
 Lines 2 and 3 correspond exactly to the equations we discussed earlier, while line 4 updates the rotation of the pendulum object around the z-axis using the variable `theta`.
 
 Once the simulation is executed in Godot, we should already observe the pendulum in motion.
@@ -195,30 +195,33 @@ If you change the value of the time step, you will likely notice that it affects
 
 There are two ways to adjust this. The first is to use the `delta` parameter received by the `_physics_process` function. This parameter returns a value equal to \( \frac{1}{\text{FPS}} \), so if we define `dt = delta`, we have:
 
-\[
+$$
 \text{simulation time per second} = \Delta t \times \text{FPS} = \frac{1}{\text{FPS}} \times \text{FPS} = 1
-\]
+$$
 
 That is, one second of simulation corresponds to one second of real time. This resolves our problem, at the cost of some precision.
 
-
+'''
 func _physics_process(delta):
   dt = delta
   dtheta += g*sin(theta)/L*dt
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
 
+'''
+
 The second approach is to force Godot to increase the processing speed. This allows you to increase the precision up to the limit your machine can handle. To do this, we use the `_ready()` function, which is called as soon as the simulation starts. Inside it, we set the number of physics iterations per second to \( \frac{1}{\Delta t} \), so that:
 
-\[
+$$
 \Delta t \times \text{FPS} = \Delta t \times \frac{1}{\Delta t} = 1
-\]
+$$
 
 That is, one second of simulation corresponds to one second of real time.
 
-
+'''
 func _ready():
 	Engine.physics_ticks_per_second = 1/dt
+'''
 
 ### Mouse Interaction
 
@@ -226,7 +229,7 @@ To begin implementing user interaction, we need to add the mouse click command t
 
 With this setup, we will modify the processing loop so that it solves the equation of motion when the mouse is not being clicked, and updates the pendulum angle based on the mouse position when the mouse button is pressed.
 
-
+'''
 func _physics_process(delta):
 	if not Input.is_action_pressed("mouse"):
 		dtheta += g*sin(theta)/L*dt
@@ -235,6 +238,7 @@ func _physics_process(delta):
 		theta = get_viewport().get_mouse_position().x/100
 		dtheta = 0
 	$Pendulum.rotation.z = theta
+'''
 
 The first part is clearly the solution to the equation of motion we wrote earlier. The command `Input.is_action_pressed("mouse")` returns true when the mouse button is pressed, and false otherwise, allowing us to distinguish between these two cases. Line 6 updates the variable `theta` based on the mouse’s x-position within the viewport, multiplied by a sensitivity factor, and line 7 resets the pendulum’s angular velocity to zero.
 
