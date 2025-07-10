@@ -179,13 +179,15 @@ By applying the equations we previously derived, we obtain the following code:
 
 ```gdscript
 func _physics_process(delta: float) -> void:
-  dtheta += g*sin(theta)/L*dt
+  dtheta += -g*sin(theta + PI)/L*dt
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
 ```
 Lines 2 and 3 correspond exactly to the equations we discussed earlier, while line 4 updates the rotation of the pendulum object around the z-axis using the variable `theta`.
 
 Once the simulation is executed in Godot, we should already observe the pendulum in motion.
+
+> **Note:** The term `PI` inside the sine function represents the mathematical constant π. It was added to shift the pendulum’s reference direction downward.
 
 ### Time Correction
 
@@ -202,7 +204,7 @@ That is, one second of simulation corresponds to one second of real time. This r
 ```gdscript
 func _physics_process(delta):
   dt = delta
-  dtheta += g*sin(theta)/L*dt
+  dtheta += -g*sin(theta + PI)/L*dt
   theta += dtheta*dt
   $Pendulum.rotation.z = theta
 
@@ -230,7 +232,7 @@ With this setup, we will modify the processing loop so that it solves the equati
 ```gdscript
 func _physics_process(delta):
 	if not Input.is_action_pressed("mouse"):
-		dtheta += g*sin(theta)/L*dt
+		dtheta += -g*sin(theta + PI)/L*dt
 		theta += dtheta*dt
 	else:
 		theta = get_viewport().get_mouse_position().x/100
@@ -240,4 +242,47 @@ func _physics_process(delta):
 
 The first part is clearly the solution to the equation of motion we wrote earlier. The command `Input.is_action_pressed("mouse")` returns true when the mouse button is pressed, and false otherwise, allowing us to distinguish between these two cases. Line 6 updates the variable `theta` based on the mouse’s x-position within the viewport, multiplied by a sensitivity factor, and line 7 resets the pendulum’s angular velocity to zero.
 
+## Damping Correction
 
+After observing the pendulum for a while, you may notice that its behavior does not appear very realistic. The pendulum oscillates indefinitely in the same manner, without losing speed. This is not due to an error in our algorithm, but rather in the assumption that the only force acting on the pendulum is gravity.
+
+To model friction, we need to consider how it affects the pendulum. If the pendulum is at rest, it is not very difficult to set it into motion. Therefore, static friction may not be the best choice in this case (although it could be added without much difficulty). Instead, we will group all frictional effects into a single, simplified term.
+
+This frictional force will be assumed to be **linear with respect to angular velocity**, proportional to it, and acting in the opposite direction.
+
+
+$$
+F_{at} = - b \dot{\theta}
+$$
+
+In this way, our equation of motion becomes:
+
+$$
+\ddot{\theta} = -\frac{g}{L} \sin(\theta) - b\dot{\theta}
+$$
+
+Now, our code only needs to include this new damping constant \( b \), and modify the Euler method iterations accordingly.
+
+```gdscript
+extends Node3D
+var dt = 0.01
+var theta = 1.4
+var dtheta = 10
+var g = -9.8
+var m = 10
+var L = 1
+var b = 0.01
+
+func _ready() -> void:
+	Engine.physics_ticks_per_second = 1/dt
+func _physics_process(delta: float) -> void:
+	if not Input.is_action_pressed("mouse"):
+		dtheta += -g*sin(theta + PI)/L*dt - b*dtheta
+		theta += dtheta*dt
+		$Pendulum.rotation.z = theta
+	else:
+		theta = get_viewport().get_mouse_position().x/100
+		dtheta = 0
+		$Pendulum.rotation.z = theta
+
+```
