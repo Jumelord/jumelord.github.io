@@ -1,12 +1,29 @@
 ---
-title: "Damped Pendulum"
+title: "Physics Simulators"
 layout: default
 ---
 
-<!-- Enables MathJax -->
-<script type="text/javascript" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+<style>
+.site-header {
+  display: none;
+}
+</style>
+
+
+<head>
+<style>
+a {
+  color: #59b390;
+  text-decoration: none;
+}
+a:hover {
+  color: #006400;
+  text-decoration: underline;
+}
+</style>
+</head>
+
+# [Run Simulation](./jogo/index.html)
 
 # Damped Pendulum
 
