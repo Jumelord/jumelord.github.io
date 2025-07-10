@@ -171,9 +171,9 @@ The `extends Node3D` line is not a variable, but it is mandatory for the script 
 
 ### Euler Method
 
-Our goal here is not to solve a differential equation with maximum precision, but rather in a way that is visually appealing and physically reasonable. Therefore, we will have Godot compute new values for \( \theta \) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
+Our goal here is not to solve a differential equation with maximum precision, but rather in a way that is visually appealing and physically reasonable. Therefore, we will have Godot compute new values for \\( \theta \\) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
 
-By applying the equations we previously derived, we obtain the following code:e new values for \( \theta \) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
+By applying the equations we previously derived, we obtain the following code:e new values for \\( \theta \\) at each frame. To do this, we will use the `_physics_process(delta)` function, which is executed once per frame.
 
 By applying the equations we previously derived, we obtain the following code:
 
@@ -191,7 +191,7 @@ Once the simulation is executed in Godot, we should already observe the pendulum
 
 If you change the value of the time step, you will likely notice that it affects the pendulum's speed. This may seem odd, as the time step is not a physical parameter. However, we must take into account that there is no clear relationship between simulation time and the time we observe. (Any resemblance to relativity is purely coincidental.) If your time step is 0.1 and the simulation physics runs at 60 iterations per second, then the simulation will be six times faster than what would happen in real life.
 
-There are two ways to adjust this. The first is to use the `delta` parameter received by the `_physics_process` function. This parameter returns a value equal to \( \frac{1}{\text{FPS}} \), so if we define `dt = delta`, we have:
+There are two ways to adjust this. The first is to use the `delta` parameter received by the `_physics_process` function. This parameter returns a value equal to \\( \frac{1}{\text{FPS}} \\), so if we define `dt = delta`, we have:
 
 $$
 \text{simulation time per second} = \Delta t \times \text{FPS} = \frac{1}{\text{FPS}} \times \text{FPS} = 1
@@ -208,7 +208,7 @@ func _physics_process(delta):
 
 ```
 
-The second approach is to force Godot to increase the processing speed. This allows you to increase the precision up to the limit your machine can handle. To do this, we use the `_ready()` function, which is called as soon as the simulation starts. Inside it, we set the number of physics iterations per second to \( \frac{1}{\Delta t} \), so that:
+The second approach is to force Godot to increase the processing speed. This allows you to increase the precision up to the limit your machine can handle. To do this, we use the `_ready()` function, which is called as soon as the simulation starts. Inside it, we set the number of physics iterations per second to \\( \frac{1}{\Delta t} \\), so that:
 
 $$
 \Delta t \times \text{FPS} = \Delta t \times \frac{1}{\Delta t} = 1
