@@ -44,7 +44,7 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 # Available simulators
 
-## [Damped Pendulum](./jogo/index.html)  
+ 
 
 <div style="display: flex; align-items: center; gap: 50px;">
 
