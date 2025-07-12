@@ -56,7 +56,7 @@ $$
 \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_o}
 $$
 
-A partir disso podemos deduzir como será o campo elétrico de uma carga pontual. A densidade de uma carga pontual pode ser modelada como uma função generalizada, chamda de delta de dirac, que depende apenas da posição, e retorna um valor nulo em qualquer ponto do espaço, exceto na origem, aonde retorna infinito.
+A densidade de carga de uma carga pontual pode ser modelada como uma função generalizada, chamda de delta de dirac, que depende apenas da posição, e retorna um valor nulo em qualquer ponto do espaço, exceto na origem, aonde retorna infinito.
 
 $$
 \delta(\vec{r}) = 
@@ -64,4 +64,30 @@ $$
 \inf & \text{if } r \neq 0 \\
 0             & \text{if } r = 0
 \end{cases}
+$$
+
+$$
+\rho(\vec{r}) = q\delta(\vec{r})
+$$
+
+A partir disso podemos deduzir como será o campo elétrico de uma carga pontual. Integrando os dois lados em uma área circular centrada em nossa carga potual, e utilizando o teorema de Gauss em duas dimensões para transformar a integral de area em uma integral de caminho ao longo da circunfência, obtemos uma expressão fechada para o campo de nossa carga.
+
+$$
+\int \int_C \nabla \cdot \vec{E} dA = \frac{\int \int_C \rho dA}{\epsilon_o} 
+$$
+
+$$
+\oint_\partial C \vec{E} \cdot \hat{n} dr  = \frac{\int \int_C q\delta(\vec{r}) dA}{\epsilon_o} 
+$$
+
+$$
+E \oint_\partial C dr  = \frac{q}{\epsilon_o} 
+$$
+
+$$
+E (2 \pi |r|)  = \frac{q}{\epsilon_o} 
+$$
+
+$$
+E = \frac{q}{2 \pi \epsilon_o |r|} 
 $$
