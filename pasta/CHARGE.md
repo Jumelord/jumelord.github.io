@@ -39,7 +39,7 @@ Electromagnetism in two dimensions is rewritten analogously to the three-dimensi
 In two dimensions, Gauss's law takes a similar form, but both the charge density and the divergence must also be calculated in two dimensions.
 
 $$
-\vec{E} = (E_x, E_y)
+\vec{E} \equiv (E_x, E_y)
 $$
 
 $$
@@ -47,7 +47,7 @@ $$
 $$
 
 $$
-\rho(x,y) = \frac{dq}{dA}
+\rho(x,y) \equiv \frac{dq}{dA}
 $$
 
 Gauss's law becomes:
