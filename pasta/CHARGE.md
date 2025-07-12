@@ -91,3 +91,17 @@ $$
 $$
 E = \frac{q}{2 \pi \epsilon_o |r|} 
 $$
+
+### Godot Setup
+
+Para começar a escrever nosso código precisamos ter alguns recursos disponíveis no editor. Portanto precisamos:
+
+* Criar um nó raiz
+* Importar uma imagem de carga positiva
+* Importar uma imagem de carga negativa
+* Importar uma imagem de uma seta
+
+![Godot Charge Setup](../pics/charge_setup.png)
+
+### Criando um campo vetorial
+
