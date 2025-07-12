@@ -61,8 +61,8 @@ A densidade de carga de uma carga pontual pode ser modelada como uma função ge
 $$
 \delta(\vec{r}) = 
 \begin{cases}
-\inf & \text{if } r \neq 0 \\
-0             & \text{if } r = 0
+\infty & \text{if } \vec{r} \neq \vec{0} \\
+0             & \text{if } \vec{r} = \vec{0}
 \end{cases}
 $$
 
@@ -73,7 +73,7 @@ $$
 A partir disso podemos deduzir como será o campo elétrico de uma carga pontual. Integrando os dois lados em uma área circular centrada em nossa carga potual, e utilizando o teorema de Gauss em duas dimensões para transformar a integral de area em uma integral de caminho ao longo da circunfência, obtemos uma expressão fechada para o campo de nossa carga.
 
 $$
-\int \int_C \nabla \cdot \vec{E} dA = \frac{\int \int_C \rho dA}{\epsilon_o} 
+\int \int_C \nabla \cdot \vec{E}~dA = \frac{\int \int_C \rho dA}{\epsilon_o} 
 $$
 
 $$
@@ -81,7 +81,7 @@ $$
 $$
 
 $$
-E \oint_\partial C dr  = \frac{q}{\epsilon_o} 
+E \oint_{\partial C} dr  = \frac{q}{\epsilon_o} 
 $$
 
 $$
