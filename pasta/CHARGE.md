@@ -42,11 +42,22 @@ $$
 \vec{E} = (E_x, E_y)
 $$
 $$
-\Nabla \equiv \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y}
+\nabla \equiv \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y}
 $$
 $$
 \rho(x,y) = \frac{dq}{dA}
 $$
+A lei de Gauss se torna:
 $$
-\Nabla \bullet \vec{E} = \frac{\rho}{\epsilon_o}
+\nabla \bullet \vec{E} = \frac{\rho}{\epsilon_o}
+$$
+
+A partir disso podemos deduzir como será o campo elétrico de uma carga pontual. A densidade de uma carga pontual pode ser modelada como uma função generalizada, chamda de delta de dirac, que depende apenas da posição, e retorna um valor nulo em qualquer ponto do espaço, exceto na origem, aonde retorna infinito.
+
+$$
+\delta(\vec{r}) = 
+\begin{cases}
+\inf & \text{if } r \neq 0 \\
+0             & \text{if } r = 0
+\end{cases}
 $$
