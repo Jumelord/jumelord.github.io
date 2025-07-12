@@ -59,6 +59,21 @@ The simulations were implemented using **Python** and the **Godot Engine**, aimi
 
 </div>
 
+<div style="display: flex; align-items: center; gap: 50px;">
+
+  <img src="./pics/charge.png" width="300">
+
+  <div style="font-size: 1.2em;">
+    <strong><a href="./pasta/CHARGE.html">2D Electromagnetism</a></strong><br>
+    It is possible to implement the laws of electromagnetism in three dimensions numerically within a simulation. However, this can be quite complex and computationally expensive. As an alternative, we could attempt to constrain the simulation to two dimensions, at the cost of discarding some of Maxwell's equations — which would be undesirable.
+    
+    In this project, we develop the dynamics of charged particles iteratively, implementing a theoretical model of electromagnetism in a 2D world.
+
+  </div>
+
+</div>
+
+
 ## [Coupled Mass-Spring System](./simulators/coupled_springs.html)  
 ## [Oscillating Rings](./simulators/oscillating_rings.html)  
 ## [Dancing Flames](./simulators/dancing_flames.html)  
