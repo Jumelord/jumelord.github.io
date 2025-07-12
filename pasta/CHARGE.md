@@ -30,13 +30,13 @@ a:hover {
 
 # 2D Electromagnetism
 
-O eletromagnetismo em duas dimensões é reescrito de maneira análoga ao modelo tridimensional, mas as leis e equações são ainda diferentes. Desa forma, o conteúdo aqui presente conta com uma modelagem numérica das equações de Maxwell para simular o movimento de cargas pontuais, o campo elétrico e magnético no espaço. Assim, todo o modelo teórico das equações de Maxwell reescritas para um mundo bidimensional foram baseado no artigo "On Maxwell’s electrodynamics in two spatial dimensions", enquanto o modelo computacional é próprio. Enquanto que a teoria por de trás equações pode ser um pouco complicada, a aplicação nessa simulação exige apenas o conhecimento básico de equações diferencias, e a dificuldade na implementação é progressiva.
+Electromagnetism in two dimensions is rewritten analogously to the three-dimensional model, but the laws and equations are still different. Thus, the content presented here involves a numerical modeling of Maxwell's equations to simulate the motion of point charges and the electric and magnetic fields in space. The entire theoretical model of Maxwell's equations rewritten for a two-dimensional world is based on the article "On Maxwell’s Electrodynamics in Two Spatial Dimensions", while the computational model is original. While the theory behind the equations can be somewhat complex, applying it in this simulation only requires basic knowledge of differential equations, and the implementation difficulty increases progressively.
 
-## Cargas Pontuais e o campo eletrico
+## Point Charges and the Electric Field
 
-### Lei de Gauss
+### Gauss's Law
 
-Em duas dimensões a lei de gauss toma uma forma semelhante, mas tanto a densidade de carga quanto o divergente devem ser feitos também em duas dimensões.
+In two dimensions, Gauss's law takes a similar form, but both the charge density and the divergence must also be calculated in two dimensions.
 
 $$
 \vec{E} = (E_x, E_y)
@@ -50,13 +50,13 @@ $$
 \rho(x,y) = \frac{dq}{dA}
 $$
 
-A lei de Gauss se torna:
+Gauss's law becomes:
 
 $$
 \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_o}
 $$
 
-A densidade de carga de uma carga pontual pode ser modelada como uma função generalizada, chamda de delta de dirac, que depende apenas da posição, e retorna um valor nulo em qualquer ponto do espaço, exceto na origem, aonde retorna infinito.
+The charge density of a point charge can be modeled as a generalized function called the Dirac delta, which depends only on position and returns zero at every point in space except at the origin, where it returns infinity.
 
 $$
 \delta(\vec{r}) = 
@@ -70,18 +70,18 @@ $$
 \rho(\vec{r}) = q\delta(\vec{r})
 $$
 
-A partir disso podemos deduzir como será o campo elétrico de uma carga pontual. Integrando os dois lados em uma área circular centrada em nossa carga potual, e utilizando o teorema de Gauss em duas dimensões para transformar a integral de area em uma integral de caminho ao longo da circunfência, obtemos uma expressão fechada para o campo de nossa carga.
+From this, we can deduce the expression for the electric field of a point charge. Integrating both sides over a circular area centered on our point charge, and using Gauss’s theorem in two dimensions to convert the area integral into a line integral along the circumference, we obtain a closed-form expression for the field of the charge:
 
 $$
-\int \int_C \nabla \cdot \vec{E}~dA = \frac{\int \int_C \rho dA}{\epsilon_o} 
-$$
-
-$$
-\oint_\partial C \vec{E} \cdot \hat{n} dr  = \frac{\int \int_C q\delta(\vec{r}) dA}{\epsilon_o} 
+\int \int_C \nabla \cdot \vec{E} ~dA = \frac{\int \int_C \rho ~dA}{\epsilon_o} 
 $$
 
 $$
-E \oint_{\partial C} dr  = \frac{q}{\epsilon_o} 
+\oint_\partial C \vec{E} \cdot \hat{n} ~dr  = \frac{\int \int_C q\delta(\vec{r}) ~dA}{\epsilon_o} 
+$$
+
+$$
+E \oint_{\partial C} ~dr  = \frac{q}{\epsilon_o} 
 $$
 
 $$
