@@ -103,5 +103,47 @@ Para começar a escrever nosso código precisamos ter alguns recursos disponíve
 
 ![Godot Charge Setup](../pics/charge_setup.png)
 
-### Criando um campo vetorial
+### Criando um campo vetorial no godot
+
+Para uma visualização clara de como o campo elétrico muda quando colocamos uma carga em alguma região do espaço precisamos de duas informações. A primeira é a direção do campo elétrico que deve ser definida em cada ponto do espaço. A segunda é a intensidade do campo em cada ponto. Isso será representado criando uma grade de setas que apontam na direção do campo naquele ponto, e a transparência da seta indica a intensidade do campo.
+
+#### Variáveis
+
+Começamos criando as variáveis que definem a região e quantidade de pontos da grade que queremos criar.
+
+```gdscript
+extends Node2D     # Object type of root node
+
+var v_field = []   # Array of our vectors
+
+var nx = 60        # Number of horizontal points
+var ny = 30        # Number of vertical points
+var lx = 2000      # Region size in x
+var ly = 1300      # Region size in y
+```
+
+#### Criando as setas
+
+O que fazemos para gerar nossas setas da maneira que queremos é iterar em cada ponto do nosso campo vetorial, criar um objeto de imagem, determinar a textura, escala e posição dele, e então adicionar a cena. Simultâneamente a esse processo de criação das setas também adicionamos essas setas a nossa matriz.
+
+```gdscript
+func _ready():
+	gen_e_field(nx,ny)
+	
+func gen_e_field(nx,ny):
+	for i in range(nx):                                                 # 
+    v_field.append([])    
+		for j in range(ny):
+			var v = Sprite2D.new()
+			v.texture = load("res://arrow.png")
+			v.scale = Vector2(1,1)*0.1
+			v.global_position = Vector2(i/float(nx)*lx,j/float(ny)*ly)
+			add_child(v)
+			
+			v_field[i].append(v)
+```
+
+#### Modificando o Campo
+
+Se você executar a sua simulação agora, verá que há várias setas enfileiradas apontando na mesma direção. Isso é esperado pois até agora não modificamos a direção e nem a cor delas. Podemos manipular isso de uma maneira simples no godot.
 
