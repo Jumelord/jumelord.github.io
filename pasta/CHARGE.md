@@ -94,22 +94,22 @@ $$
 
 ### Godot Setup
 
-Para começar a escrever nosso código precisamos ter alguns recursos disponíveis no editor. Portanto precisamos:
+To begin writing our code, we need to have a few resources available in the editor. Therefore, we need to:
 
-* Criar um nó raiz
-* Importar uma imagem de carga positiva
-* Importar uma imagem de carga negativa
-* Importar uma imagem de uma seta
+* Create a root node  
+* Import an image of a positive charge  
+* Import an image of a negative charge  
+* Import an image of an arrow  
 
 ![Godot Charge Setup](../pics/charge_setup.png)
 
-### Criando um campo vetorial no godot
+### Creating a Vector Field in Godot
 
-Para uma visualização clara de como o campo elétrico muda quando colocamos uma carga em alguma região do espaço precisamos de duas informações. A primeira é a direção do campo elétrico que deve ser definida em cada ponto do espaço. A segunda é a intensidade do campo em cada ponto. Isso será representado criando uma grade de setas que apontam na direção do campo naquele ponto, e a transparência da seta indica a intensidade do campo.
+To clearly visualize how the electric field changes when a charge is placed in a region of space, we need two pieces of information. First, the direction of the electric field must be defined at every point in space. Second, the field's intensity at each point. This will be represented by creating a grid of arrows pointing in the direction of the field at that point, with the arrow’s transparency indicating the field's intensity.
 
-#### Variáveis
+#### Variables
 
-Começamos criando as variáveis que definem a região e quantidade de pontos da grade que queremos criar.
+We start by creating the variables that define the region and the number of points in the grid we want to generate.
 
 ```gdscript
 extends Node2D     # Object type of root node
@@ -122,28 +122,49 @@ var lx = 2000      # Region size in x
 var ly = 1300      # Region size in y
 ```
 
-#### Criando as setas
+#### Creating the Arrows
 
-O que fazemos para gerar nossas setas da maneira que queremos é iterar em cada ponto do nosso campo vetorial, criar um objeto de imagem, determinar a textura, escala e posição dele, e então adicionar a cena. Simultâneamente a esse processo de criação das setas também adicionamos essas setas a nossa matriz.
+To generate the arrows in the desired manner, we iterate over each point in our vector field, create an image object, define its texture, scale, and position, and then add it to the scene. Simultaneously with this arrow creation process, we also add these arrows to our matrix.
+
 
 ```gdscript
 func _ready():
 	gen_e_field(nx,ny)
 	
 func gen_e_field(nx,ny):
-	for i in range(nx):                                                 # 
-    v_field.append([])    
-		for j in range(ny):
-			var v = Sprite2D.new()
-			v.texture = load("res://arrow.png")
-			v.scale = Vector2(1,1)*0.1
-			v.global_position = Vector2(i/float(nx)*lx,j/float(ny)*ly)
-			add_child(v)
+	for i in range(ny):
+		v_field.append([])								# Add a row in v_field matrix    
+		for j in range(nx):
+			var v = Sprite2D.new()							# Create a sprite object
+			v.texture = load("res://arrow.png")					# Set sprite texture as file "res://arrow.png"
+			v.scale = Vector2(1,1)*0.1						# Set sprite scale as 0.1
+			v.global_position = Vector2(j/float(nx)*lx,i/float(ny)*ly)		# Set sprite position to a fraction of lx and ly 
+			add_child(v)								# Add sprite to our scene
 			
-			v_field[i].append(v)
+			v_field[i].append(v)							# Add sprite to v_field matrix
 ```
 
-#### Modificando o Campo
 
-Se você executar a sua simulação agora, verá que há várias setas enfileiradas apontando na mesma direção. Isso é esperado pois até agora não modificamos a direção e nem a cor delas. Podemos manipular isso de uma maneira simples no godot.
+![Arrows](../pics/Arrows.png)
 
+#### Modifying the Field
+
+If you run your simulation now, you will see several arrows lined up, all pointing in the same direction. This is expected, as we haven't yet modified their direction or color. Fortunately, we can manipulate both easily in Godot.
+
+```gdscript
+func _ready():
+	gen_e_field(nx,ny)
+	update_vectors()
+
+func update_vectors():
+	for i in range(ny):
+		for j in range(nx):
+			var norm = sin(i/2.0)**2			# Set a variable of vector norm 
+			var dir = Vector2(-i,j)				# Set a variable of vector direction
+			v_field[i][j].modulate.a = norm			# Set alpha component of the color of our arrow as norm
+			v_field[i][j].rotation = dir.angle()		# Set the rotation of our arrow as the angle of direction with x axis
+```
+
+What we just did was simply assign the transparency of our arrows using a function of their position, and we did the same for their direction.
+
+![Modified Arrows](../pics/ModifiedArrows.png)
