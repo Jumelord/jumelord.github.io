@@ -165,6 +165,48 @@ func update_vectors():
 			v_field[i][j].rotation = dir.angle()		# Set the rotation of our arrow as the angle of direction with x axis
 ```
 
-What we just did was simply assign the transparency of our arrows using a function of their position, and we did the same for their direction.
+What we just did was simply assign the transparency of our arrows using a function of their position, and we did the same for their direction. We will not use these function to our eletric field, but this method is general for any function we want.
 
 ![Modified Arrows](../pics/ModifiedArrows.png)
+
+
+### Creating a Charge
+
+One way to represent a point charge in our simulation is through a visual image.  
+However, beyond its appearance, a point charge also has a **position**, a **velocity**, and, naturally, a **charge**.
+
+To encapsulate both the **visual** and **mathematical** characteristics of the charge, we define it as an object.
+
+In **Godot**, objects are defined as classes that can store:
+
+- Variables
+- Functions
+- Other objects
+
+```gdscript
+class charge:
+	extends Sprite2D
+	var q = 1
+	var vel = Vector2(0,0)
+	func _init(q,pos):
+		self.q = q
+		self.global_position = pos
+		
+		if q < 0:
+			texture = load("res://negativa.png")
+			self.scale = Vector2(1,1)*0.05
+		else:
+			texture = load("res://positiva.png")
+			self.scale = Vector2(1,1)*0.08
+```
+
+---
+
+We define a class that:
+
+- Inherits from `Sprite`
+- Contains variables for `charge` and `velocity`
+- Receives initial values for `charge` and `position` upon creation
+- Sets its texture dynamically based on the charge value
+
+This allows us to represent the charge both visually and physically within the simulation.
