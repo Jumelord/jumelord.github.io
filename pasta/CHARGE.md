@@ -186,12 +186,13 @@ In **Godot**, objects are defined as classes that can store:
 ```gdscript
 class charge:
 	extends Sprite2D
-	var q = 1
-	var vel = Vector2(0,0)
-	func _init(q,pos):
+	var q = 1.0
+	var m = 1.0
+	var last_pos = Vector2(0,0)
+	func _init(q,pos) -> void:
 		self.q = q
 		self.global_position = pos
-		
+		self.last_pos = pos
 		if q < 0:
 			texture = load("res://negativa.png")
 			self.scale = Vector2(1,1)*0.05
@@ -210,3 +211,48 @@ We define a class that:
 - Sets its texture dynamically based on the charge value
 
 This allows us to represent the charge both visually and physically within the simulation.
+
+### Interatividade da carga e o campo
+
+#### Interação do mouse
+
+Nós já criamos um objeto com tudo o que precisamos para a carga, mas se executarmos a simulação nada acontece, isso porque não adicionamos ela a cena. Vamos fazer isso agora.
+
+```gdscript
+func _input(event):
+	if Input.is_action_just_released("mouse1"):
+		var c = charge.new(1,get_global_mouse_position())
+		add_child(c)
+		charges.append(c)
+	if Input.is_action_just_released("mouse2"):
+		var c = charge.new(-1,get_global_mouse_position())
+		add_child(c)
+		charges.append(c)
+```
+
+O que fizemos foi utilizar a função _input, que é chamada sempre que uma interação do mouse ou teclado é feita, e as condições dos botões do mouse serem apertados. Assim, instanciamos nossa carga com carga 1 e a posição do mouse, e depois adicionamos na cena.
+
+#### Alterando o campo elétrico
+
+Agora que conseguimos adicionar uma carga com os botões do mouse, queremos observar como o campo elétrico muda com a adição de cargas. Para isso, criamos uma função que calcula o campo total em um determinado ponto, e utilizamos essa função para definir a transparência e a direção das nossas setas.
+
+```gdscript
+func _physics_process(delta):
+	update_vectors()
+
+func get_e_field(pos):
+	var k = 1
+	var f = Vector2(0,0)
+	for c in charges:
+		f += k*c.q/(pos - c.global_position).length()**2*(pos - c.global_position)
+	return f
+
+func update_vectors():
+	for i in range(ny):
+		for j in range(nx):
+			var norm = get_e_field(Vector2(j/float(nx)*lx, i/float(ny)*ly)).length()*50
+			var dir = get_e_field(Vector2(j/float(nx)*lx, i/float(ny)*ly))
+			v_field[i][j].modulate.a = norm
+			v_field[i][j].rotation = dir.angle()
+```
+
