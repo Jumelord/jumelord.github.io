@@ -290,4 +290,29 @@ $$
 
 While Euler’s method has an error proportional to \\( \Delta t^2 \\), Verlet’s method has an error proportional to \\( \Delta t^4 \\), which leads to much faster convergence as \\( \Delta t \\) decreases. However, we now require knowledge of the previous position \\( x(t - \Delta t) \\), which must be stored at each step, and the acceleration \\( a(t) \\), which can be computed from the electric field.
 
+### Movimento
+
+Para aplicar o método de Verlet ao nosso sistema, precisamos computar o campo elétrico na posição de cada carga, multiplicar pela carga para obter a força, e dividir pela massa para obter a aceleração. Então repetimos isso para cada carga a cada frame, utilizando o parâmetro delta como time-step, e modificamos a posição da carga com base no método.
+
+```gdscript
+func _physics_process(delta):
+	update_vectors()
+	move(delta)
+
+func get_accel(cp):
+	var k = 10000.0			# Proportional parameter
+	var f = Vector2(0,0)		# Total field
+	for c in charges:		# Sum over all charge fields except one charge
+		if c != cp:
+			f += k*c.q/((cp.global_position - c.global_position).length() + 0.0001)**2*(cp.global_position - c.global_position)
+	var a = f*cp.q/cp.m		# Acceleration
+	return a
+
+func move(dt):
+	for c in charges:
+		var lp = c.global_position							# Current position
+		c.global_position = 2*c.global_position - c.last_pos + get_accel(c)*dt**2	# Current position -> New position
+		c.last_pos = lp									# Last position -> current position
+```
+
 
