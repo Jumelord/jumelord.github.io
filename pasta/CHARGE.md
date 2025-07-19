@@ -212,11 +212,11 @@ We define a class that:
 
 This allows us to represent the charge both visually and physically within the simulation.
 
-### Interatividade da carga e o campo
+### Charge and Field Interactivity
 
-#### Interação do mouse
+#### Mouse Interaction
 
-Nós já criamos um objeto com tudo o que precisamos para a carga, mas se executarmos a simulação nada acontece, isso porque não adicionamos ela a cena. Vamos fazer isso agora.
+We have already created an object with all the necessary components to represent a charge. However, if we run the simulation, nothing happens — this is because we have not yet added the charge to the scene. Let’s do that now.
 
 ```gdscript
 func _input(event):
@@ -230,11 +230,14 @@ func _input(event):
 		charges.append(c)
 ```
 
-O que fizemos foi utilizar a função _input, que é chamada sempre que uma interação do mouse ou teclado é feita, e as condições dos botões do mouse serem apertados. Assim, instanciamos nossa carga com carga 1 e a posição do mouse, e depois adicionamos na cena.
+#### Input Handling and Charge Instantiation
 
-#### Alterando o campo elétrico
+We used the `_input` function, which is automatically called whenever a mouse or keyboard event occurs, along with conditions that check for mouse button presses. In this way, we instantiate a charge with magnitude 1 at the mouse position and then add it to the scene.
 
-Agora que conseguimos adicionar uma carga com os botões do mouse, queremos observar como o campo elétrico muda com a adição de cargas. Para isso, criamos uma função que calcula o campo total em um determinado ponto, e utilizamos essa função para definir a transparência e a direção das nossas setas.
+#### Updating the Electric Field
+
+Now that we can add a charge using mouse buttons, we want to observe how the electric field changes when new charges are introduced. To accomplish this, we define a function that computes the **total electric field** at a given point. We then use this function to update both the **transparency** and **direction** of the vector arrows representing the field.
+
 
 ```gdscript
 func _physics_process(delta):
