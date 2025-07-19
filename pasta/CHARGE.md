@@ -255,4 +255,36 @@ func update_vectors():
 			v_field[i][j].modulate.a = norm
 			v_field[i][j].rotation = dir.angle()
 ```
+### Verlet Method
+
+In our numerical model for solving the pendulum, [PENDULUM](../pasta/PENDULUM.html), we discussed Euler’s method — a simple but not very accurate approach. Now we introduce the **Verlet method**, which is slightly more sophisticated and offers a much faster decrease in error as the time step decreases. To derive the recursive equation for this method, we begin by expanding the position function in a Taylor series, one step forward and one step backward.
+
+$$
+x(t + \Delta t) = x(t) + x'(t)\Delta t + \frac{1}{2}x''(t) \Delta t^2 + \frac{1}{6}x^{(3)}(t) \Delta t^3 + \frac{1}{24}x^{(4)}(t) \Delta t^4 + \cdots
+$$
+
+$$
+x(t - \Delta t) = x(t) - x'(t)\Delta t + \frac{1}{2}x''(t) \Delta t^2 - \frac{1}{6}x^{(3)}(t) \Delta t^3 + \frac{1}{24}x^{(4)}(t) \Delta t^4 - \cdots
+$$
+
+Adding both equations:
+
+$$
+x(t + \Delta t) + x(t - \Delta t) = 2x(t) + x''(t) \Delta t^2 + \frac{1}{12}x^{(4)}(t) \Delta t^4 + \cdots
+$$
+
+Rewriting:
+
+$$
+x(t + \Delta t) = 2x(t) - x(t - \Delta t) + x''(t) \Delta t^2 + \frac{1}{12}x^{(4)}(t) \Delta t^4 + \cdots
+$$
+
+Neglecting higher-order terms, we arrive at the final Verlet update formula:
+
+$$
+x(t + \Delta t) = 2x(t) - x(t - \Delta t) + a(t) \Delta t^2
+$$
+
+While Euler’s method has an error proportional to \\( \Delta t^2 \\), Verlet’s method has an error proportional to \\( \Delta t^4 \\), which leads to much faster convergence as \\( \Delta t \\) decreases. However, we now require knowledge of the previous position \\( x(t - \Delta t) \\), which must be stored at each step, and the acceleration \\( a(t) \\), which can be computed from the electric field.
+
 
